@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-5">Diabetes Prediction Model</h2>
+        <p class="text-center">Enter the following details to predict the likelihood of diabetes:</p>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="pregnancies">Pregnancies</label>
+                <input type="number" class="form-control" id="pregnancies" name="pregnancies" required>
+            </div>
+
+            <div class="form-group">
+                <label for="glucose">Glucose</label>
+                <input type="number" step="any" class="form-control" id="glucose" name="glucose" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bloodpressure">Blood Pressure (mm Hg)</label>
+                <input type="number" step="any" class="form-control" id="bloodpressure" name="bloodpressure" required>
+            </div>
+
+            <div class="form-group">
+                <label for="skinthickness">Skin Thickness (mm)</label>
+                <input type="number" step="any" class="form-control" id="skinthickness" name="skinthickness" required>
+            </div>
+
+            <div class="form-group">
+                <label for="insulin">Insulin (mu U/ml)</label>
+                <input type="number" step="any" class="form-control" id="insulin" name="insulin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">BMI (Body Mass Index)</label>
+                <input type="number" step="any" class="form-control" id="bmi" name="bmi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="diabetespedigreefunction">Diabetes Pedigree Function</label>
+                <input type="number" step="any" class="form-control" id="diabetespedigreefunction" name="diabetespedigreefunction" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age (Years)</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        <br>
+
+        <!-- Display the prediction result -->
+        {% if prediction_text %}
+            <div class="alert alert-info text-center">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
