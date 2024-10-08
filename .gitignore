@@ -1,2 +1,3 @@
 myenv
-.DS_Store__pycache__/
+.DS_Store
+__pycache__/
