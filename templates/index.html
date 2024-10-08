@@ -5,61 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Prediction</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background */
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        h2 {
+            color: #007bff; /* Bootstrap Primary Color */
+        }
+        button {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        button:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        small {
+            color: #6c757d; /* Muted text color for hints */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center mt-5">Diabetes Prediction Model</h2>
-        <p class="text-center">Enter the following details to predict the likelihood of diabetes:</p>
-        <form action="/predict" method="post">
-            <div class="form-group">
-                <label for="pregnancies">Pregnancies</label>
-                <input type="number" class="form-control" id="pregnancies" name="pregnancies" required>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <h2 class="text-center">Diabetes Prediction Model</h2>
+                    <p class="text-center">Enter the following details to predict your risk of diabetes:</p>
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="pregnancies">Number of Pregnancies</label>
+                            <input type="number" class="form-control" id="pregnancies" name="pregnancies" required>
+                            <small class="form-text">Total number of times you have been pregnant.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="glucose">Glucose Level</label>
+                            <input type="number" step="any" class="form-control" id="glucose" name="glucose" required>
+                            <small class="form-text">Plasma glucose concentration (mg/dL).</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bloodpressure">Blood Pressure</label>
+                            <input type="number" step="any" class="form-control" id="bloodpressure" name="bloodpressure" required>
+                            <small class="form-text">Diastolic blood pressure in mm Hg.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skinthickness">Skin Thickness</label>
+                            <input type="number" step="any" class="form-control" id="skinthickness" name="skinthickness"  required>
+                            <small class="form-text">Triceps skinfold thickness in mm.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="insulin">Insulin Level</label>
+                            <input type="number" step="any" class="form-control" id="insulin" name="insulin" required>
+                            <small class="form-text">2-Hour serum insulin level in mu U/ml.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bmi">Body Mass Index (BMI)</label>
+                            <input type="number" step="any" class="form-control" id="bmi" name="bmi" required>
+                            <small class="form-text">Body Mass Index (weight in kg/(height in m)^2).</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diabetespedigreefunction">Diabetes Pedigree Function</label>
+                            <input type="number" step="any" class="form-control" id="diabetespedigreefunction" name="diabetespedigreefunction" required>
+                            <small class="form-text">Likelihood of diabetes based on family history.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" required>
+                            <small class="form-text">Your age in years.</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Get Diabetes Prediction</button>
+                    </form>
+
+                    <br>
+
+                    <!-- Display the prediction result -->
+                    {% if prediction_text %}
+                        <div class="alert alert-info text-center">{{ prediction_text }}</div>
+                    {% endif %}
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="glucose">Glucose</label>
-                <input type="number" step="any" class="form-control" id="glucose" name="glucose" required>
-            </div>
-
-            <div class="form-group">
-                <label for="bloodpressure">Blood Pressure (mm Hg)</label>
-                <input type="number" step="any" class="form-control" id="bloodpressure" name="bloodpressure" required>
-            </div>
-
-            <div class="form-group">
-                <label for="skinthickness">Skin Thickness (mm)</label>
-                <input type="number" step="any" class="form-control" id="skinthickness" name="skinthickness" required>
-            </div>
-
-            <div class="form-group">
-                <label for="insulin">Insulin (mu U/ml)</label>
-                <input type="number" step="any" class="form-control" id="insulin" name="insulin" required>
-            </div>
-
-            <div class="form-group">
-                <label for="bmi">BMI (Body Mass Index)</label>
-                <input type="number" step="any" class="form-control" id="bmi" name="bmi" required>
-            </div>
-
-            <div class="form-group">
-                <label for="diabetespedigreefunction">Diabetes Pedigree Function</label>
-                <input type="number" step="any" class="form-control" id="diabetespedigreefunction" name="diabetespedigreefunction" required>
-            </div>
-
-            <div class="form-group">
-                <label for="age">Age (Years)</label>
-                <input type="number" class="form-control" id="age" name="age" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Predict</button>
-        </form>
-
-        <br>
-
-        <!-- Display the prediction result -->
-        {% if prediction_text %}
-            <div class="alert alert-info text-center">{{ prediction_text }}</div>
-        {% endif %}
+        </div>
     </div>
 </body>
 </html>
