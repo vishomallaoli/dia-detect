@@ -21,19 +21,6 @@
 
 ---
 
-## 📸 Screenshots & Demos
-
-### 🖼️ Screenshot - Input Form
-![Input Form](assets/input-form.png)
-
-### 🖼️ Screenshot - Prediction Result
-![Prediction Result](assets/prediction-result.png)
-
-### 🎬 GIF Demo
-![App in Action](assets/app-demo.gif)
-
----
-
 ## 🛠️ Technologies Used
 
 | Technology        | Description                                                       |
