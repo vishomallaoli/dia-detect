@@ -8,7 +8,7 @@
 
 **DiaDetect** is a sleek and functional web application designed to help users assess their risk of diabetes based on health metrics. Powered by **Machine Learning** and a simple, user-friendly **Flask** interface, it leverages a Support Vector Machine (SVM) model to predict diabetes likelihood. Just fill in your basic health parameters, and DiaDetect will analyze your risk of diabetes in an instant.
 
-![App Screenshot](screenshot.png)
+![App Screenshot](assets/images/pipeline.webp)
 
 ---
 
